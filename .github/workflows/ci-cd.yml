@@ -31,6 +31,6 @@ jobs :
       with: 
         context: .
         push : true
-        tags: username/name-image:latest
+        tags: fikri917/dogandcat:latest
     - name: Run Docker Container
-      run: docker run -d -p 5000:5000 username/nama-image:latest
+      run: docker run -d -p 5000:5000 fikri917/dogandcat:latest
