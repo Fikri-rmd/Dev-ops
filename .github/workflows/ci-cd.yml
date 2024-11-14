@@ -1,14 +1,12 @@
-name : CI/CD Pipeline
+name: CI/CD Pipeline
 
-#menentukan kapan workflow dijalankan, disini pada setiap push atau pull request ke branch `main`
-
-on : 
-  push : 
+on: 
+  push: 
     branches: [main]
   pull_request: 
     branches: [main]
 
-jobs :
+jobs:
   build:
 
     runs-on: ubuntu-latest
@@ -16,6 +14,13 @@ jobs :
     steps:
     - name: checkout repository
       uses: actions/checkout@v2
+
+    - name: Run Super Linter
+      uses: github/super-linter@v4
+      env:
+        VALIDATE_ALL_CODEBASE: false
+        DEFAULT_BRANCH: main
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: setup docker buildx
       uses: docker/setup-buildx-action@v1
@@ -30,7 +35,8 @@ jobs :
       uses: docker/build-push-action@v2
       with: 
         context: .
-        push : true
+        push: true
         tags: fikri917/dogandcat:latest
+
     - name: Run Docker Container
       run: docker run -d -p 5000:5000 fikri917/dogandcat:latest
