@@ -7,62 +7,67 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <style>
-
-.hero {
-    background: black;
-}
+      .hero {
+          background-color: #ff0000; /* Latar belakang hero merah */
+      }
+      .title {
+          color: #ffffff; /* Teks judul putih cerah */
+      }
+      .bg-text {
+          color: #ffffff; /* Warna teks putih cerah untuk elemen lainnya */
+      }
+      .file .file-label .file-cta {
+          background-color: #ff0000; /* Latar belakang tombol unggah file merah */
+          color: #ffffff; /* Teks putih cerah untuk tombol unggah */
+      }
+      .file .file-name {
+          color: #ffffff; /* Warna teks putih cerah untuk nama file */
+      }
+      #classify_button {
+          background-color: #ff0000; /* Latar belakang tombol Classify merah */
+          color: #ffffff; /* Teks putih cerah untuk tombol Classify */
+          border: none;
+      }
     </style>
-
   </head>
 
-    
-<body>
-
-<!-- .hero -->
-<section class="hero is-fullheight" has-background-black>
-
-    <section class="section">
+  <body>
+    <!-- .hero -->
+    <section class="hero is-fullheight">
+      <section class="section">
         <div class="container">
-            <center><h1 class="title" style="color: white;">
-              Dog & Cat Classifier</center>
-            </h1>
+          <center><h1 class="title">
+            Dog & Cat Classifier
+          </h1></center>
         </div>   
-    </section> 
+      </section> 
 
-
-    <section class="section">
+      <section class="section">
         <div class="container has-text-centered bg-text" style="width: 100%">
-
-              <div>
-                <i class="arrow_down"></i>
-                <form action="/classify" method="post" enctype="multipart/form-data" style="margin-top: 30px; width: 80%; text-align: center; margin: auto;">
-                  <div class="file has-name is-centered">     
-                      <label class="file-label">
-                        <input class="file-input" type="file" id="image" name = "image">
-                        <span class="file-cta">
-                          <span class="file-label">
-                            Upload an image
-                          </span>
-                        </span>
-                        <span class="file-name" id="file-name">
-                          No file chosen
-                        </span>
-      
-                      </label>
-                    </div>
-                    <br>
-                    <input type="submit" value="Classify" class="button is-black" name = "image" id="classify_button">
-                </form>
-      
-                </div>
-               
+          <div>
+            <form action="/classify" method="post" enctype="multipart/form-data" style="margin-top: 30px; width: 80%; text-align: center; margin: auto;">
+              <div class="file has-name is-centered">     
+                <label class="file-label">
+                  <input class="file-input" type="file" id="image" name="image">
+                  <span class="file-cta">
+                    <span class="file-label">
+                      Upload an image
+                    </span>
+                  </span>
+                  <span class="file-name" id="file-name">
+                    No file chosen
+                  </span>
+                </label>
               </div>
-            </div>
+              <br>
+              <input type="submit" value="Classify" class="button" id="classify_button">
+            </form>
+          </div>
         </div>
+      </section>
+    </section>
+    <!-- /.hero -->
 
-<!-- /.hero -->
-
-
-<script src="/static/script.js"></script>
-</body>
+    <script src="/static/script.js"></script>
+  </body>
 </html>
