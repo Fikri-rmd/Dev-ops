@@ -41,24 +41,4 @@ jobs:
     - name: Run Docker Container
       run: docker run -d -p 5000:5000 fikri917/dogandcat:latest
 
-    - name: Set up kubectl
-      uses: azure/setup-kubectl@v3
-      with:
-        version: 'v1.31.0'
-
-    - name: Configure kubectl
-      run: |
-        echo "${{ secrets.KUBECONFIG }}" > kubeconfig.yaml
-        export KUBECONFIG=kubeconfig.yaml
-
-    - name: Apply Kubernetes Manifests
-      run: |
-        kubectl apply -f deployment.yaml
-        kubectl apply -f hpa.yaml
-
-    - name: Verify Deployment
-      run: |
-        kubectl rollout status deployment/dog-cat-classifier
-        kubectl get pods
-
 
