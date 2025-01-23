@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: dog-cat-classifier
 spec:
-  replicas: 3  # Gunakan 3 pod untuk ketersediaan tinggi
+  replicas: 3
   selector:
     matchLabels:
       app: dog-cat-classifier
@@ -14,19 +14,16 @@ spec:
     spec:
       containers:
       - name: dog-cat-classifier
-        image: fikri917/dogandcat:latest  # Ganti dengan nama image Docker Anda
+        image: fikri917/dogandcat:latest
         ports:
         - containerPort: 5000
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: dog-cat-classifier-service
-spec:
-  selector:
-    app: dog-cat-classifier
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 5000
-  type: LoadBalancer
+        resources:
+          requests:
+            cpu: "100m"
+          limits:
+            cpu: "200m"
+        env:
+        - name: FLASK_RUN_HOST
+          value: "0.0.0.0"
+        - name: FLASK_RUN_PORT
+          value: "5000"  # Opsional, jika Anda ingin memastikan Flask menggunakan port tertentu
